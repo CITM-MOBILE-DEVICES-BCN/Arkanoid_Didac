@@ -219,6 +219,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e53a7b27e1315f448057767dd3b90a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lifesList: []
+  lifes: 3
+  isLevel1: 1
+  isHorizontal: 1
+  score: 0
+  highScore: 0
+  pauseMenuPrefab: {fileID: 7446436932034977415, guid: d63b14332659c7f4793d72ed3ff421b5,
+    type: 3}
+  pauseMenu: {fileID: 0}
 --- !u!4 &386578733
 Transform:
   m_ObjectHideFlags: 0

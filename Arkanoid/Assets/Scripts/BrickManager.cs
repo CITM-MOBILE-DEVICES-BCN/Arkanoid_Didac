@@ -23,7 +23,7 @@ public class BrickManager : MonoBehaviour
 
                 allBricks.Add(blueBrick);
             }
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 9; i++)
             {
                 var greenBrick = Instantiate(greenBrickPrefab);
                 greenBrick.transform.SetParent(this.transform, false);
@@ -44,7 +44,7 @@ public class BrickManager : MonoBehaviour
                 blueBrick.transform.SetParent(this.transform, false);
                 allBricks.Add(blueBrick);
             }
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 9; i++)
             {
                 var greenBrick = Instantiate(greenBrickPrefab);
                 greenBrick.transform.SetParent(this.transform, false);

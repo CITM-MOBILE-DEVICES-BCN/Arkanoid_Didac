@@ -22,8 +22,6 @@ public class BallMovement : MonoBehaviour
 
     public void LaunchBall()
     {
-        
-        
         velocity.x = Random.Range(-1f, 1f);
         velocity.y = 1;
         rigidBody.AddForce(velocity * speed);
@@ -31,7 +29,10 @@ public class BallMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        rigidBody.velocity *= 1.025f;
+        if(rigidBody.velocity.magnitude < 1000)
+        {
+            rigidBody.velocity *= 1.025f;
+        }
         
     }
 

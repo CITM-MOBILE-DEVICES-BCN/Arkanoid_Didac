@@ -163,3 +163,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brickLife: 2
+  greenSprite: {fileID: 21300000, guid: 009ff39597f30ee4487936c9db73cdff, type: 3}
+  blueSprite: {fileID: 21300000, guid: 3f2c60d52e0f14940b189d2f08f38101, type: 3}
+  redSprite: {fileID: 21300000, guid: cbd757c96afd07a43a477439f3a94e84, type: 3}

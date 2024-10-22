@@ -11,10 +11,21 @@ public class GameManager : MonoBehaviour
     public int lifes = 3;
     public bool isLevel1 = true;
     public bool isHorizontal = true;
+    
+    
 
     public int score;
     public int highScore;
 
+    public enum GameState
+    {
+        menu,
+        inGame,
+        pause,
+        gameOver
+    }
+
+    public GameState currentGameState = GameState.menu;
 
     private void Start()
     {
@@ -36,24 +47,33 @@ public class GameManager : MonoBehaviour
         {
             GameOver();
         }
+
+       
+
     }
 
     public void StartGame()
     {
         isLevel1 = true;
+        currentGameState = GameState.inGame;
         SceneManager.LoadScene("Level1Scene");
+       
     }
 
     public void LoadLevel2()
     {
         isLevel1 = false;
+        currentGameState = GameState.inGame;
         SceneManager.LoadScene("Level2Scene");
     }
 
     public void GameOver()
     {
+        currentGameState = GameState.gameOver;
         SceneManager.LoadScene("GameOverScene");
     }
 
-   
+    
+
+
 }

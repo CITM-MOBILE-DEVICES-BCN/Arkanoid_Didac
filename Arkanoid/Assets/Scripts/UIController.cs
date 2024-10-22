@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static GameManager;
 
 public class UIController : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class UIController : MonoBehaviour
     
     public BallMovement ball;
     public GameObject lifePrefab;
+
+    public GameObject pauseMenu;
 
     
 
@@ -46,6 +49,7 @@ public class UIController : MonoBehaviour
             }
         }
         
+
     }
 
     // Update is called once per frame
@@ -53,6 +57,17 @@ public class UIController : MonoBehaviour
     {
         scoreValue.text = GameManager.instance.score.ToString();
         highScoreValue.text = GameManager.instance.highScore.ToString();
+
+        if (Input.GetKeyUp(KeyCode.Escape) && GameManager.instance.currentGameState == GameState.inGame)
+        {
+            PauseGame();
+            GameManager.instance.currentGameState = GameState.pause;
+        }
+        else if (Input.GetKeyUp(KeyCode.Escape) && GameManager.instance.currentGameState == GameState.pause)
+        {
+            ResumeGame();
+            GameManager.instance.currentGameState = GameState.inGame;
+        }
     }
 
     public void AddPoints()
@@ -69,5 +84,16 @@ public class UIController : MonoBehaviour
         GameManager.instance.lifesList[GameManager.instance.lifesList.Count - 1].gameObject.SetActive(false);
         GameManager.instance.lifesList.RemoveAt(GameManager.instance.lifesList.Count - 1);
         GameManager.instance.lifes--;
+    }
+
+    public void PauseGame()
+    {
+        pauseMenu.SetActive(true);
+        Time.timeScale = 0;
+    }
+    public void ResumeGame()
+    {
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1;
     }
 }
