@@ -5,33 +5,34 @@ using UnityEngine;
 public class BallMovement : MonoBehaviour
 {
 
-    [SerializeField] float speed = 10;
-    private float timeToLaunch = 0;
+    [SerializeField] float speed = 300;
     private Rigidbody2D rigidBody;
+    private Vector2 velocity;
+
 
     // Start is called before the first frame update
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
+
+        Invoke("LaunchBall", 2);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void LaunchBall()
     {
+        //transform.position = new Vector3(0, -163, transform.position.z);
+        velocity.x = Random.Range(-1f, 1f);
+        velocity.y = 1;
+        rigidBody.AddForce(velocity * speed);
+    }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        rigidBody.velocity *= 1.025f;
 
-        if (timeToLaunch > 2)
+        if(collision.collider.CompareTag("Death"))
         {
-           rigidBody.velocity = new Vector2(Random.Range(-1, 1) * speed, Random.Range(-1, 1) * speed);
-        } 
-        else
-        {
-            timeToLaunch += Time.deltaTime;
+
         }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        
     }
 }

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3584610592468936483}
   - component: {fileID: 1428770236415402132}
   - component: {fileID: 1046002269927019721}
+  - component: {fileID: 9112068351697571026}
   m_Layer: 5
   m_Name: GreenBrick
   m_TagString: Untagged
@@ -149,3 +150,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 63.79196, y: 31.9531}
   m_EdgeRadius: 0
+--- !u!114 &9112068351697571026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2722988210355605349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fd8b6bcacaed9a448e5deb58e06f96b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brickLife: 1
