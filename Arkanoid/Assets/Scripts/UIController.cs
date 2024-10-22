@@ -11,39 +11,63 @@ public class UIController : MonoBehaviour
     public TextMeshProUGUI scoreValue;
     public TextMeshProUGUI highScoreValue;
 
-    public List<GameObject> lifes;
+    
     public BallMovement ball;
+    public GameObject lifePrefab;
 
-    public int score;
-    public int highScore;
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        scoreValue.text = "0";
         instance = this;
+        if (GameManager.instance.lifesList.Count == 0)
+        {
+            for (int i = 0; i < GameManager.instance.lifes; i++)
+            {
+                var life = Instantiate(lifePrefab);
+                life.transform.SetParent(gameObject.transform, false);
+                life.transform.position = new Vector3(life.transform.position.x + 20 * i, life.transform.position.y, life.transform.position.z);
+                GameManager.instance.lifesList.Add(life);
+
+            }
+        }
+        else
+        {
+            
+            for (int i = 0; i < GameManager.instance.lifes; i++)
+            {
+                GameManager.instance.lifesList.RemoveAt(i);
+                var life = Instantiate(lifePrefab);
+                life.transform.SetParent(gameObject.transform, false);
+                life.transform.position = new Vector3(life.transform.position.x + 20 * i, life.transform.position.y, life.transform.position.z);
+                GameManager.instance.lifesList.Add(life);
+
+            }
+        }
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        scoreValue.text = score.ToString();
-        highScoreValue.text = highScore.ToString();
+        scoreValue.text = GameManager.instance.score.ToString();
+        highScoreValue.text = GameManager.instance.highScore.ToString();
     }
 
     public void AddPoints()
     {
-        score += 100;
-        if (score >= highScore)
+        GameManager.instance.score += 100;
+        if (GameManager.instance.score >= GameManager.instance.highScore)
         {
-            highScore = score;
+            GameManager.instance.highScore = GameManager.instance.score;
         }
     }
 
     public void LoseLife()
     {
-        lifes[lifes.Count - 1].gameObject.SetActive(false);
-        lifes.RemoveAt(lifes.Count - 1);
-        ball.LaunchBall();
+        GameManager.instance.lifesList[GameManager.instance.lifesList.Count - 1].gameObject.SetActive(false);
+        GameManager.instance.lifesList.RemoveAt(GameManager.instance.lifesList.Count - 1);
+        GameManager.instance.lifes--;
     }
 }

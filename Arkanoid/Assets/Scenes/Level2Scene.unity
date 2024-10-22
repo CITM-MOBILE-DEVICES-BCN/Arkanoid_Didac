@@ -2079,7 +2079,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1273822360}
   m_CullTransparentMesh: 1
---- !u!1 &1286783770
+--- !u!1 &1295003602
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2087,8 +2087,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1286783772}
-  - component: {fileID: 1286783771}
+  - component: {fileID: 1295003604}
+  - component: {fileID: 1295003603}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2096,34 +2096,31 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1286783771
+--- !u!114 &1295003603
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1286783770}
+  m_GameObject: {fileID: 1295003602}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e53a7b27e1315f448057767dd3b90a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifesList:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  lifesList: []
   lifes: 3
   isLevel1: 1
   isHorizontal: 1
   score: 0
   highScore: 0
---- !u!4 &1286783772
+--- !u!4 &1295003604
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1286783770}
+  m_GameObject: {fileID: 1295003602}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 486.32712, y: 363.18375, z: 8.497478}
@@ -2820,4 +2817,4 @@ SceneRoots:
   - {fileID: 832575519}
   - {fileID: 1086642507}
   - {fileID: 65125370}
-  - {fileID: 1286783772}
+  - {fileID: 1295003604}
