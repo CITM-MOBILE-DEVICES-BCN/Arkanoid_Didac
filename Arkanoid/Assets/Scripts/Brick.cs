@@ -12,6 +12,7 @@ public class Brick : MonoBehaviour
     public Sprite greenSprite;
     public Sprite blueSprite;
     public Sprite redSprite;
+    public GameObject powerUpPrefab;
 
     private void Start()
     {
@@ -54,6 +55,15 @@ public class Brick : MonoBehaviour
         }
         else if (brickLife == 0)
         {
+            int powerUpDrop = Random.Range(1, 100);
+
+            if(powerUpDrop <= 20)
+            {
+                var powerUp = Instantiate(powerUpPrefab);
+                powerUp.transform.SetParent(UIController.instance.transform, false);
+                powerUp.transform.position = transform.position;
+            }
+
             boxCollider2D.enabled = false;
             image.enabled = false;
             UIController.instance.AddPoints();

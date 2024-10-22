@@ -34,4 +34,13 @@ public class PlayerController : MonoBehaviour
             isAutomatic = !isAutomatic;
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "PowerUp")
+        {
+            UIController.instance.scoreMultiplier++;
+            collision.gameObject.SetActive(false);
+        }
+    }
 }

@@ -18,6 +18,8 @@ public class UIController : MonoBehaviour
 
     public GameObject pauseMenu;
 
+    public int scoreMultiplier = 1;
+
     
 
     // Start is called before the first frame update
@@ -72,7 +74,7 @@ public class UIController : MonoBehaviour
 
     public void AddPoints()
     {
-        GameManager.instance.score += 100;
+        GameManager.instance.score += 100 * scoreMultiplier;
         if (GameManager.instance.score >= GameManager.instance.highScore)
         {
             GameManager.instance.highScore = GameManager.instance.score;
