@@ -43,12 +43,10 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if(lifes == 0)
+        if(lifes == 0 && currentGameState == GameState.inGame)
         {
             GameOver();
         }
-
-       
 
     }
 
@@ -56,6 +54,8 @@ public class GameManager : MonoBehaviour
     {
         isLevel1 = true;
         currentGameState = GameState.inGame;
+        lifes = 3;
+        score = 0;
         SceneManager.LoadScene("Level1Scene");
        
     }
