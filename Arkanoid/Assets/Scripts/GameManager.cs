@@ -73,7 +73,10 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("GameOverScene");
     }
 
-    
+    public void ChangeAspectRatio()
+    {
+        isHorizontal = !isHorizontal;
+    }
 
 
 }
