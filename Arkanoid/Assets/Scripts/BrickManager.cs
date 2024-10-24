@@ -77,7 +77,7 @@ public class BrickManager : MonoBehaviour
             }
             else if (!GameManager.instance.isLevel1)
             {
-                GameManager.instance.StartGame();
+                GameManager.instance.LoadLevel1();
             }
             
         }

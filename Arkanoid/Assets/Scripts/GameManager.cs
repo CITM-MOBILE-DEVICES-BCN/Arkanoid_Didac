@@ -60,6 +60,13 @@ public class GameManager : MonoBehaviour
        
     }
 
+    public void LoadLevel1()
+    {
+        isLevel1 = true;
+        currentGameState = GameState.inGame;
+        SceneManager.LoadScene("Level1Scene");
+    }
+
     public void LoadLevel2()
     {
         isLevel1 = false;
@@ -71,11 +78,6 @@ public class GameManager : MonoBehaviour
     {
         currentGameState = GameState.gameOver;
         SceneManager.LoadScene("GameOverScene");
-    }
-
-    public void ChangeAspectRatio()
-    {
-        isHorizontal = !isHorizontal;
     }
 
 

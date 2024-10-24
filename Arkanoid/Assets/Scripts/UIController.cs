@@ -19,7 +19,7 @@ public class UIController : MonoBehaviour
     public GameObject pauseMenu;
 
     public GameObject horizontalCanvas;
-    public GameObject verticalCanvas;
+    
 
     public int scoreMultiplier = 1;
 
@@ -29,33 +29,15 @@ public class UIController : MonoBehaviour
     void Start()
     {
         instance = this;
-        //if (GameManager.instance.isHorizontal)
-        //{
-        //    float aspect = 16f / 9f;
-        //    Camera.main.aspect = aspect;
-        //    Camera.main.ResetAspect();
-        //}
-        //else if (!GameManager.instance.isHorizontal)
-        //{
-        //    float aspect = 9f / 16f;
-        //    Camera.main.aspect = aspect;
-        //    Camera.main.ResetAspect();
-        //}
-        CheckAspect();
+        
         if (GameManager.instance.lifesList.Count == 0)
         {
             for (int i = 0; i < GameManager.instance.lifes; i++)
             {
                 var life = Instantiate(lifePrefab);
-                if(GameManager.instance.isHorizontal)
-                {
-                    life.transform.SetParent(horizontalCanvas.transform, false);
-                } 
-                else if (!GameManager.instance.isHorizontal)
-                {
-                    life.transform.SetParent(verticalCanvas.transform, false);
-                }
-                
+                life.transform.SetParent(horizontalCanvas.transform, false);
+
+
                 life.transform.position = new Vector3(life.transform.position.x + 20 * i, life.transform.position.y, life.transform.position.z);
                 GameManager.instance.lifesList.Add(life);
 
@@ -68,14 +50,7 @@ public class UIController : MonoBehaviour
             {
                 GameManager.instance.lifesList.RemoveAt(i);
                 var life = Instantiate(lifePrefab);
-                if (GameManager.instance.isHorizontal)
-                {
-                    life.transform.SetParent(horizontalCanvas.transform, false);
-                }
-                else if (!GameManager.instance.isHorizontal)
-                {
-                    life.transform.SetParent(verticalCanvas.transform, false);
-                }
+                life.transform.SetParent(horizontalCanvas.transform, false);
                 life.transform.position = new Vector3(life.transform.position.x + 20 * i, life.transform.position.y, life.transform.position.z);
                 GameManager.instance.lifesList.Add(life);
 
@@ -88,11 +63,13 @@ public class UIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       
         scoreValue.text = GameManager.instance.score.ToString();
         highScoreValue.text = GameManager.instance.highScore.ToString();
 
         if (Input.GetKeyUp(KeyCode.Escape) && GameManager.instance.currentGameState == GameState.inGame)
         {
+           
             PauseGame();
             GameManager.instance.currentGameState = GameState.pause;
         }
@@ -130,17 +107,5 @@ public class UIController : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    public void CheckAspect()
-    {
-        if (Screen.width >= Screen.height)
-        {
-            horizontalCanvas.SetActive(true);
-            verticalCanvas.SetActive(false);
-        }
-        else if (Screen.width < Screen.height)
-        {
-            horizontalCanvas.SetActive(false);
-            verticalCanvas.SetActive(true);
-        }
-    }
+    
 }
