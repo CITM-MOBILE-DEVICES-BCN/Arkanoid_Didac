@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static GameManager;
 
@@ -23,7 +24,9 @@ public class UIController : MonoBehaviour
 
     public int scoreMultiplier = 1;
 
+    public BrickManager brickManager;
     
+
 
     // Start is called before the first frame update
     void Start()
@@ -69,13 +72,13 @@ public class UIController : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.Escape) && GameManager.instance.currentGameState == GameState.inGame)
         {
-           
-            PauseGame();
+
+            ButtonController.instance.PauseGame();
             GameManager.instance.currentGameState = GameState.pause;
         }
         else if (Input.GetKeyUp(KeyCode.Escape) && GameManager.instance.currentGameState == GameState.pause)
         {
-            ResumeGame();
+            ButtonController.instance.ResumeGame();
             GameManager.instance.currentGameState = GameState.inGame;
         }
     }
@@ -96,16 +99,8 @@ public class UIController : MonoBehaviour
         GameManager.instance.lifes--;
     }
 
-    public void PauseGame()
-    {
-        pauseMenu.SetActive(true);
-        Time.timeScale = 0;
-    }
-    public void ResumeGame()
-    {
-        pauseMenu.SetActive(false);
-        Time.timeScale = 1;
-    }
-
     
+    
+
+
 }

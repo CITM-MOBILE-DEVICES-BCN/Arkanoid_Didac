@@ -9,10 +9,13 @@ public class BrickManager : MonoBehaviour
     public GameObject blueBrickPrefab;
     public GameObject redBrickPrefab;
     public List<GameObject> allBricks;
+    private DataSaver dataSaver = new DataSaver();
+    private int bricksAlive;
 
     // Start is called before the first frame update
     void Start()
     {
+       
         if (GameManager.instance.isLevel1)
         {
 
@@ -54,26 +57,36 @@ public class BrickManager : MonoBehaviour
             
 
         }
+        bricksAlive = allBricks.Count;
+        if(GameManager.instance.gameSaved)
+        {
+            Debug.Log("LoadBricks");
+            LoadBricks();
+        }
+        ButtonController.instance.SaveGame();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(allBricks.Count != 0)
+        if(bricksAlive != 0)
         {
             for (int i = 0; i < allBricks.Count; i++)
             {
-                if (allBricks[i].GetComponent<Brick>().brickLife == 0)
+                if (allBricks[i].GetComponent<Brick>().brickLife == 0 && allBricks[i].GetComponent<Brick>().isDead == false)
                 {
-                    allBricks.RemoveAt(i);
+                    bricksAlive--;
+                    allBricks[i].GetComponent<Brick>().isDead = true;
                 }
             }
         } 
-        else if (allBricks.Count == 0)
+        else if (bricksAlive == 0)
         {
             if(GameManager.instance.isLevel1)
             {
+                GameManager.instance.gameSaved = false;
                 GameManager.instance.LoadLevel2();
+
             }
             else if (!GameManager.instance.isLevel1)
             {
@@ -82,5 +95,24 @@ public class BrickManager : MonoBehaviour
             
         }
         
+    }
+    public void SaveBricks()
+    {
+        
+        for(int i = 0;i < allBricks.Count;i++)
+        {
+            Debug.Log(i);
+            Debug.Log(allBricks[i].GetComponent<Brick>().brickLife);
+            dataSaver.SaveBricksPrefs(allBricks[i].GetComponent<Brick>().brickLife, i);
+        }
+        
+    }
+    public void LoadBricks()
+    {
+        Debug.Log("Loading Bricks Info");
+        for (int i = 0; i < allBricks.Count; i++)
+        {
+            allBricks[i].GetComponent<Brick>().brickLife = dataSaver.LoadBricksPrefs(i);
+        }
     }
 }

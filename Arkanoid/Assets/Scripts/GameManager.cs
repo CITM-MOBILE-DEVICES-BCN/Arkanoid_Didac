@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,11 +12,15 @@ public class GameManager : MonoBehaviour
     public int lifes = 3;
     public bool isLevel1 = true;
     public bool isHorizontal = true;
-    
-    
+
+
+    private DataSaver dataSaver = new DataSaver();
 
     public int score;
     public int highScore;
+
+    
+    public bool gameSaved = false;
 
     public enum GameState
     {
@@ -27,7 +32,7 @@ public class GameManager : MonoBehaviour
 
     public GameState currentGameState = GameState.menu;
 
-    private void Start()
+    private void Awake()
     {
         if (instance == null)
         {
@@ -38,6 +43,8 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        
         
     }
 
@@ -48,16 +55,6 @@ public class GameManager : MonoBehaviour
             GameOver();
         }
 
-    }
-
-    public void StartGame()
-    {
-        isLevel1 = true;
-        currentGameState = GameState.inGame;
-        lifes = 3;
-        score = 0;
-        SceneManager.LoadScene("Level1Scene");
-       
     }
 
     public void LoadLevel1()
@@ -76,9 +73,11 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        gameSaved = false;
         currentGameState = GameState.gameOver;
         SceneManager.LoadScene("GameOverScene");
     }
+    
 
 
 }

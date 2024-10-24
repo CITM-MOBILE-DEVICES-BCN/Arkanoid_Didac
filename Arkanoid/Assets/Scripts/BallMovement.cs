@@ -16,12 +16,15 @@ public class BallMovement : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody2D>();
         initialPosition = transform.position;
-
+        Time.timeScale = 1;
+        
+        Debug.Log("Start Ball");
         Invoke("LaunchBall", 2);
     }
 
     public void LaunchBall()
     {
+        Debug.Log("Launch Ball");
         velocity.x = Random.Range(-1f, 1f);
         velocity.y = 1;
         rigidBody.AddForce(velocity * speed);

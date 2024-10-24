@@ -6,6 +6,6 @@ public class RetryGame : MonoBehaviour
 {
     public void RetryGameFunc()
     {
-        GameManager.instance.StartGame();
+        ButtonController.instance.StartGame();
     }
 }

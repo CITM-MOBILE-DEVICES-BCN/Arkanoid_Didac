@@ -13,11 +13,13 @@ public class Brick : MonoBehaviour
     public Sprite blueSprite;
     public Sprite redSprite;
     public GameObject powerUpPrefab;
+    public bool isDead = false;
 
     private void Start()
     {
         boxCollider2D = GetComponent<BoxCollider2D>();
         image = GetComponent<Image>();
+        Debug.Log("Start Brick");
         if (brickLife == 3)
         {
             image.sprite = redSprite;
@@ -29,6 +31,12 @@ public class Brick : MonoBehaviour
         else if (brickLife == 1)
         {
             image.sprite = greenSprite;
+        }
+        else if(brickLife == 0)
+        {
+            boxCollider2D.enabled = false;
+            image.enabled = false;
+            isDead = true;
         }
     }
 
@@ -60,7 +68,7 @@ public class Brick : MonoBehaviour
             if(powerUpDrop <= 20)
             {
                 var powerUp = Instantiate(powerUpPrefab);
-                powerUp.transform.SetParent(UIController.instance.transform, false);
+                powerUp.transform.SetParent(transform.parent.parent.transform, false);
                 powerUp.transform.position = transform.position;
             }
 
