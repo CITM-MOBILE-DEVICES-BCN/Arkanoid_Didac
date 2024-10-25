@@ -51,7 +51,7 @@ public class UIController : MonoBehaviour
             
             for (int i = 0; i < GameManager.instance.lifes; i++)
             {
-                GameManager.instance.lifesList.RemoveAt(i);
+                //GameManager.instance.lifesList.RemoveAt(i);
                 var life = Instantiate(lifePrefab);
                 life.transform.SetParent(horizontalCanvas.transform, false);
                 life.transform.position = new Vector3(life.transform.position.x + 20 * i, life.transform.position.y, life.transform.position.z);

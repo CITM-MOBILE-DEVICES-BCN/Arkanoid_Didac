@@ -47,7 +47,7 @@ public class Brick : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-
+        GameManager.instance.BrickFX();
         brickLife--;
         if (brickLife == 3)
         {
@@ -63,6 +63,7 @@ public class Brick : MonoBehaviour
         }
         else if (brickLife == 0)
         {
+            
             int powerUpDrop = Random.Range(1, 100);
 
             if(powerUpDrop <= 20)

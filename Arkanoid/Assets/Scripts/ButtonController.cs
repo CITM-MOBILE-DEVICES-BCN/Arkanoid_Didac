@@ -33,6 +33,8 @@ public class ButtonController : MonoBehaviour
         GameManager.instance.currentGameState = GameState.inGame;
         GameManager.instance.lifes = 3;
         GameManager.instance.score = 0;
+        GameManager.instance.musicSource.Play();
+        GameManager.instance.titleMusic.Stop();
         SceneManager.LoadScene("Level1Scene");
 
     }
@@ -55,6 +57,8 @@ public class ButtonController : MonoBehaviour
     public void LoadMenu()
     {
         GameManager.instance.currentGameState = GameState.menu;
+        GameManager.instance.titleMusic.Play();
+        GameManager.instance.musicSource.Stop();
         SceneManager.LoadScene("MainMenuScene");
     }
     public void LoadGame()

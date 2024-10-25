@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 
     static public GameManager instance;
     public List<GameObject> lifesList;
-    public int lifes = 3;
+    public int lifes;
     public bool isLevel1 = true;
     public bool isHorizontal = true;
 
@@ -21,6 +21,10 @@ public class GameManager : MonoBehaviour
 
     
     public bool gameSaved = false;
+    public AudioSource musicSource;
+    public AudioSource brickFX;
+    public AudioSource gameOverFX;
+    public AudioSource titleMusic;
 
     public enum GameState
     {
@@ -61,6 +65,8 @@ public class GameManager : MonoBehaviour
     {
         isLevel1 = true;
         currentGameState = GameState.inGame;
+        musicSource.Play();
+        titleMusic.Stop();
         SceneManager.LoadScene("Level1Scene");
     }
 
@@ -68,6 +74,8 @@ public class GameManager : MonoBehaviour
     {
         isLevel1 = false;
         currentGameState = GameState.inGame;
+        musicSource.Play();
+        titleMusic.Stop();
         SceneManager.LoadScene("Level2Scene");
     }
 
@@ -75,9 +83,14 @@ public class GameManager : MonoBehaviour
     {
         gameSaved = false;
         currentGameState = GameState.gameOver;
+        gameOverFX.Play();
+        musicSource.Stop();
         SceneManager.LoadScene("GameOverScene");
     }
     
-
+    public void BrickFX()
+    {
+        brickFX.Play();
+    }
 
 }
